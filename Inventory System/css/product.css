@@ -1,0 +1,156 @@
+.body{
+    width: 100%;
+}
+.product_item{
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.cardPrice{
+    display: flex;
+}
+.table{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+
+.pr{
+    
+    
+    display: flex;
+    transform: scale(1);
+    flex-direction: column ;
+    justify-content: space-around;
+    
+    
+}
+
+.row .delete{
+    width: 1rem;
+}
+
+.box_menu{
+    display: flex;
+    
+    transform: scale(0);
+    transition:.3s ease-in;
+    position: fixed !important;
+    z-index: 1;
+    border:2px solid black;
+    
+    min-width:1rem;
+    border-radius:11px;
+    background: linear-gradient(130deg, rgb(116, 235, 213), rgb(172, 182, 229));
+    margin: 1rem;
+}
+
+.menu{
+    display:flex;
+    
+    width: 100%;
+    justify-content: center;
+    
+}
+
+
+.show{
+    transform: scale(1);
+    transition:.1s ease-in;
+    position: relative;
+}
+
+.cart{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.cart_btn{
+    display:none;
+}
+.card-body {
+    height: 30rem; /* Adjust the height as needed */
+    min-height:20rem;
+}
+
+.card-body img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.btns{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    text-align:end;
+}
+.card-text {
+    margin-bottom: 0;
+}
+
+/* Container for the dropdown button */
+.dropdown-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Style for the dropdown button */
+.dropdown-button {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Style for the dropdown content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    border-radius: 0.25rem;
+    
+}
+
+/* Show the dropdown content when the button is hovered, focused, or clicked */
+.dropdown-button:hover .dropdown-content,
+.dropdown-button:focus .dropdown-content,
+.dropdown-button.active .dropdown-content {
+    display: block;
+    opacity: 1;
+}
+
+/* Style for the dropdown options */
+.dropdown-option {
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+}
+
+/* Style for the dropdown options on hover */
+.dropdown-option:hover {
+    background-color: #e9e9e9;
+}
+
+.order_btn{
+    display:flex;
+    justify-content:space-around;
+    width: 100%;
+}
+
+.cart{
+    position:fixed;
+    z-index: 1;
+}
+
+.cart button{
+    border-radius:50%;
+    background:#F41F4E;
+    color:white;
+    border:none;
+}

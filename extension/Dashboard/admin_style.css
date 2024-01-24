@@ -1,0 +1,141 @@
+/*DASHBOARD*/
+
+#myChart{
+    min-width: 31rem;
+}
+
+.sales{
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    gap: 3rem;
+    min-width: 41rem;
+    min-height: 21rem;
+    padding: 2rem;
+    border-radius: 11px;
+}
+
+.sales h1{
+    font-size: clamp(1rem, 2vw, 2rem);
+}
+.sales h3{
+    font-size: clamp(.8rem, 2vw, 1rem);
+}
+
+
+
+.warehouse_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6rem;
+    padding: 2rem;
+    
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 11px;
+    min-width: 41rem;
+    min-height: 21rem;
+}
+
+.all{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.section1{
+    
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 2rem;
+    border-radius: 11px;
+}
+
+.section1 ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.section1 li h1{
+    font-size: clamp(1rem, 2vw, 1.5rem);
+} 
+.section1 li p{
+    text-align: center;
+    font-weight: 900;
+} 
+
+.section2{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-evenly;
+    
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 2rem;
+    border-radius: 11px;
+}
+
+.section2 span{
+    background-color: #FFC2C7;
+    width: .2rem;
+    margin: 1rem;
+}
+
+.rev h1{
+    font-size: clamp(1rem, 2vw, 2rem);
+}
+.rev h3{
+    font-size: clamp(.5rem, 1.5vw, .9rem);
+    text-align: center;
+}
+
+.ship h1{
+    font-size: clamp(1rem, 2vw, 2rem);
+}
+.ship h3{
+    font-size: clamp(.5rem, 1.5vw, 1rem);
+    text-align: center;
+}
+
+.profit h1{
+    font-size: clamp(1rem, 2vw, 2rem);
+}
+.profit h3{
+    font-size: clamp(.5rem, 1.5vw, 1rem);
+    text-align: center;
+}
+
+.new h1{
+    font-size: clamp(1rem, 2vw, 2rem);
+}
+.new h3{
+    font-size: clamp(.5rem, 1.5vw, 1rem);
+    text-align: center;
+}
+.new h2{
+    font-size: clamp(1rem, 1.5vw, 2rem);
+    text-align: center;
+}
+.new p{
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
