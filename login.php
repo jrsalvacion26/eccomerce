@@ -144,7 +144,7 @@ body{
     <body>
 
     <nav id="admin">
-        <h1>GADGET TECH</h1>
+        <h1>SavoryHarbor</h1>
         
         <div class="form-group">
             <div class="group">

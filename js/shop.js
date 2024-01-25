@@ -139,13 +139,11 @@ window.onload = function() {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Get references to the elements
     var cart = document.getElementById("cart");
     var addToCartBox = document.getElementById("add-to-cart-box");
 
-    // When .cart is clicked, toggle the visibility of .add_to_cart_box smoothly
     cart.addEventListener("click", function () {
-        if (addToCartBox.style.display === "none" || addToCartBox.style.display === "") {
+        if (addToCartBox.style.opacity === "0" || addToCartBox.style.opacity === "") {
             addToCartBox.style.display = "block";
             setTimeout(function () {
                 addToCartBox.style.opacity = "1";
@@ -189,6 +187,11 @@ function submitOrder() {
 
 
 
+ // Function to toggle the active state of the dropdown button
+ function toggleDropdown() {
+    var dropdownButton = document.querySelector('.dropdown-button');
+    dropdownButton.classList.toggle('active');
+}
 
 
 

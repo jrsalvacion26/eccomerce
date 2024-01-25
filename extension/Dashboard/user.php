@@ -1,3 +1,27 @@
+<?php 
+
+
+
+
+// Get user_id from the URL parameter
+$user_id = isset($_GET['user_id']) ? $_GET['user_id'] : 0;
+
+// Query to get all orders for the user with product details
+$sql = "SELECT * FROM product ORDER BY RAND() LIMIT 10";
+
+
+$result = $conn->query($sql);
+
+if ($result === false) {
+    die("Error executing the query: " . $conn->error);
+}
+
+
+
+
+?>
+
+
 <!--header-->
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -48,7 +72,7 @@
                   
                     <div class="content">
                         <div class="txt">
-                          
+                          <p>Transform Your Office with Elegant Desk Furniture <br> Where Style Meets Functionality.</p>
                         </div>
                         <button>Shop Now</button>
                     </div>
@@ -183,40 +207,27 @@
     <div class="box">
         <h3 style="margin-left: 2rem;font-weight:800; text-align:center;">Featured Product</h3>
         <div class="cards">
-
+        <?php if ($result->num_rows > 0) { ?>
+          <?php while ($order = $result->fetch_assoc()) { ?>
             <div class="card shadow  rounded" id="card_product" style="width: 12rem;">
-              <img src="./image/fork.jpg" alt="" class="card-img-top">
+              <img src="./image/<?php echo $order['product_image']; ?>" alt="" class="card-img-top">
               <div class="card-body">
-                <h6 class="card-title" style="text-align:center;">Flatware Fork & TableSpoon</h6>
+                <h6 class="card-title" style="text-align:center;"><?php echo $order['product_name']; ?></h6>
                 
                 <div class="pr_st d-flex">
-                  <p>Price: $12,000</p>
-                  <p>Stock: 2</p>
+                  <p>Price:<?php echo $order['price']; ?></p>
+                  <p>Stock: <?php echo $order['stock']; ?></p>
                 </div>
                 <div class=".btn_product d-flex">
-                  <button class="btn btn-primary">Add to Cart</button>
-                  <a href="#" class="btn btn-primary">Order</a>
+                
+                  <a href="../eccomerce/extension/place_order.php?product_id=<?php echo $order['product_id']; ?>&product_image=<?php echo $order['product_image']; ?>&price=<?php echo $order['price']; ?>&product_name=<?php echo $order['product_name']; ?>" class="btn btn-primary">Order</a>
                 </div>
               </div>
             </div>
             
+            <?php } ?>
 
-            <div class="card shadow  rounded"  id="card_product" style="width: 12rem;">
-              <img src="./image/charcoal_plate.jpg" alt="" class="card-img-top">
-              <div class="card-body">
-                <h6 class="card-title" style="text-align:center;">Charcoal Plates</h6>
-                <div class="pr_st d-flex">
-                  <p>Price: $12,000</p>
-                  <p>Stock: 2</p>
-                </div>
-                <div class=".btn_product d-flex">
-                  <button class="btn btn-primary">Add to Cart</button>
-                  <a href="#" class="btn btn-primary">Order</a>
-                </div>
-              </div>
-            </div>
-
-
+            <?php } ?>
         </div>
         
     </div>

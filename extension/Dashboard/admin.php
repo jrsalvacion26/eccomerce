@@ -18,6 +18,62 @@ $averageOrderPriceQuery = "SELECT AVG(p.price) AS average_order_price
 $averageOrderPriceResult = mysqli_query($conn, $averageOrderPriceQuery);
 $averageOrderPrice = ($averageOrderPriceResult && mysqli_num_rows($averageOrderPriceResult) > 0) ? mysqli_fetch_assoc($averageOrderPriceResult)['average_order_price'] : 0;
 
+
+
+// Replace 'start_date' and 'end_date' with your actual date range
+$start_date = '2022-01-01';
+$end_date = '2022-12-31';
+
+$queryss = "
+    SELECT
+        SUM(o.quantity) AS total_quantity,
+        SUM(o.total_amount) AS total_sales,
+        SUM(p.price * o.quantity) AS total_revenue,
+        SUM(p.price * o.quantity) AS total_cost,
+        SUM((p.price - p.price) * o.quantity) AS total_profit
+    FROM
+        `order` o
+    JOIN
+        `product` p ON o.product_id = p.product_id
+ 
+";
+
+$result = $conn->query($queryss);
+
+if ($result === false) {
+    die("Query failed: " . $conn->error);
+}
+$row = $result->fetch_assoc();
+
+$total_quantity = $row['total_quantity'];
+$total_sales = $row['total_sales'];
+$total_revenue = $row['total_revenue'];
+$total_cost = $row['total_cost'];
+$total_profit = $row['total_profit'];
+
+
+
+$query_order = "
+    SELECT
+        COUNT(*) AS number_of_purchases,
+        SUM(total_amount) AS total_cost
+    FROM
+        `order`;
+";
+
+$result = $conn->query($query_order);
+
+if ($result === false) {
+    die("Query failed: " . $conn->error);
+}
+
+$row = $result->fetch_assoc();
+
+$number_of_purchases = $row['number_of_purchases'];
+$total_cost = $row['total_cost'];
+
+
+
 // Close the database connection
 mysqli_close($conn);
 ?>
@@ -47,7 +103,7 @@ mysqli_close($conn);
                                 <span class="material-symbols-outlined" style="background-color:#FADCD9; padding:.5rem; color:#F79489; border-radius:7px;">real_estate_agent</span>
                                 <div class="txt">
                                     <h6>Total Sales</h6>
-                                    <h6>500</h6>
+                                    <h6><?php echo $total_sales; ?></h6>
                                 </div>
                             </div>
 
@@ -55,7 +111,7 @@ mysqli_close($conn);
                                 <span class="material-symbols-outlined" style="background-color:#B1D4E0; padding:.5rem; color:#0C2D48; border-radius:7px;">payments</span>
                                 <div class="txt">
                                     <h6>Cost</h6>
-                                    <h6>3000</h6>
+                                    <h6><?php echo $total_cost; ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +121,7 @@ mysqli_close($conn);
                                 <span class="material-symbols-outlined" style="background-color:#F4EBD0; padding:.5rem; color:#122620; border-radius:7px;">monitoring</span>
                                 <div class="txt">
                                     <h6>Revenue</h6>
-                                    <h6>4000</h6>
+                                    <h6><?php echo $total_revenue; ?></h6>
                                 </div>
                             </div>
 
@@ -73,7 +129,7 @@ mysqli_close($conn);
                                 <span class="material-symbols-outlined" style="background-color:#B9B7BD; padding:.5rem; color:#EEEDE7; border-radius:7px;">paid</span>
                                 <div class="txt">
                                     <h6>Profit</h6>
-                                    <h6>300</h6>
+                                    <h6><?php echo $total_profit; ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +152,7 @@ mysqli_close($conn);
                                 <span class="material-symbols-outlined" style="background-color:#9388A2; padding:.5rem; color:#0E050F; border-radius:7px;">shopping_bag</span>
                                 <div class="txt">
                                     <h6>No. of Purchase</h6>
-                                    <h6>210</h6>
+                                    <h6><?php echo $number_of_purchases; ?></h6>
                                 </div>
                             </div>
 
@@ -114,7 +170,7 @@ mysqli_close($conn);
                                 <span class="material-symbols-outlined" style="background-color:#B1D4E0; padding:.5rem; color:#0C2D48; border-radius:7px;">payments</span>
                                 <div class="txt">
                                     <h6>Cost</h6>
-                                    <h6>212</h6>
+                                    <h6><?php echo $total_cost; ?></h6>
                                 </div>
                             </div>
 

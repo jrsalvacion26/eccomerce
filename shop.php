@@ -36,7 +36,13 @@ $result = mysqli_query($conn, $query);
 
 
 
+$stock = 0; // You should replace this with the actual stock value from your database
 
+// Example for a button
+$buttonDisabled = ($stock == 0) ? 'disabled' : '';
+
+// Example for a link
+$linkDisabled = ($stock == 0) ? 'disabled' : '';
 
 
 
@@ -217,9 +223,32 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == "Admin") {
         
         <?php while ($row = mysqli_fetch_assoc($result)) {?>
             <div class="card shadow rounded" id="card_product" style="width: 12rem;">
-            <h1 id="product_id"><?php echo $row['product_id']?></h1>
-                <span class="material-symbols-outlined" style="margin-left: auto;">more_vert</span>
-                <img src="uploads/product/<?php echo $row['product_image']; ?>" alt="" class="card-img-top">
+            
+            <?php
+                // Check if the user's role is admin to display the form
+                if (isset($_SESSION['role']) && $_SESSION['role'] == "Admin") {
+                ?>
+                    <div class="dropdown-container">
+                            <div class="dropdown-button">
+                                <span class="material-symbols-outlined">more_vert</span>
+                                <div class="dropdown-content">
+                                    <div class="dropdown-option">
+                                    <a href="./extension/edit_product.php?product_id=<?php echo $row['product_id']; ?>&about=<?php echo $row['about']; ?>&category=<?php echo $row['category']; ?>&stock=<?php echo $row['stock']; ?>&product_image=<?php echo $row['product_image']; ?>&price=<?php echo $row['price']; ?>&product_name=<?php echo $row['product_name']; ?>" class="btn order">Edit</a>
+                                    </div>
+                                    <div class="dropdown-option">
+                                        <form action="./extension/delete_product.php" method="post">
+                                            <input type="hidden" name="product_id" value="<?php echo $row['product_id']; ?>">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                <?php }?>
+                
+                        
+                        
+                <img src="./uploads/product/<?php echo $row['product_image']; ?>" alt="" class="card-img-top">
                 <div class="card-body">
                     <h6 class="card-title" style="text-align:center;"><?php echo $row['product_name']; ?></h6>
                     
@@ -229,9 +258,13 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == "Admin") {
                     </div>
                     <!-- Inside the while loop where you display products -->
                     <div class="btn_product d-flex">
+                        <?php if ($row['stock'] >= 1){ ?>
                     <button class="btn add" onclick="addToCart('<?php echo $row['product_name']; ?>', <?php echo $row['price']; ?>, <?php echo $row['stock']; ?>, <?php echo $row['product_id']; ?>)">Add to Cart</button>
 
-                        <a href="./extension/place_order.php?product_id=<?php echo $row['product_id']; ?>&price=<?php echo $row['price']; ?>" class="btn order">Order</a>
+                    <a href="./extension/place_order.php?product_id=<?php echo $row['product_id']; ?>&product_image=<?php echo $row['product_image']; ?>&price=<?php echo $row['price']; ?>&product_name=<?php echo $row['product_name']; ?>" class="btn order">Order</a>
+                    <?php } else {?>
+                        <h6 style="text-align:center; color:#cccc;">Out of Stock</h6>
+                    <?php } ?>
                     </div>
 
                 </div>
@@ -240,7 +273,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == "Admin") {
         
     </div>
 
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example" style="display:flex; justify-content:center;">
         <ul class="pagination">
             <?php
             // Get total number of products for pagination
@@ -269,5 +302,6 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == "Admin") {
 </div>
 
 <script src="./js/shop.js"></script>
+
 </body>
 </html>
